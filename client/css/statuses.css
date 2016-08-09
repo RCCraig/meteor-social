@@ -1,0 +1,7 @@
+form.add-status textarea {
+  resize: none;
+  height: 100px;
+}
+
+.status span::after { content: ','; }
+.status span:last-of-type::after { content: ''; }

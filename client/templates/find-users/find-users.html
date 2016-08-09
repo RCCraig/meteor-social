@@ -1,0 +1,44 @@
+<template name="findUsers">
+  <div class="col-md-6">
+    <h1>All Users</h1>
+    {{> EasySearch.Input index=usersIndex attributes=inputAttributes}}
+    
+    <ul class="list-group">
+      {{#EasySearch.Each index=usersIndex}}
+        <li class="list-group-item {{#if checkRelationshipStatus 'alreadyFriends' __originalId}}list-group-item-success{{/if}}">
+          {{profile.fullName}}
+          {{#if checkRelationshipStatus "requestSent" __originalId}}
+            <button type="button" class="btn btn-danger btn-xs pull-right" data-action="cancelFriendRequest" title="Cancel friend request">
+              <i class="fa fa-times-circle"></i>
+            </button>
+          {{else}}
+            {{#if checkRelationshipStatus "requestReceived" __originalId}}
+              <div class="pull-right">
+                <button type="button" class="btn btn-danger btn-xs" data-action="rejectRequest" title="Reject friend request">
+                  <i class="fa fa-user-times"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-xs" data-action="confirmFriendship" title="Confirm friendship">
+                  <i class="fa fa-check-square"></i>
+                </button>
+              </div> <!-- /.pull-right -->
+            {{else}}
+              {{#if checkRelationshipStatus 'alreadyFriends' __originalId}}
+                <button type="button" class="btn btn-warning btn-xs pull-right" data-action="cancelFriendship" title="Cancel friendship">
+                  <i class="fa fa-times"></i>
+                </button>
+              {{else}}
+                <button type="button" class="btn btn-primary btn-xs pull-right" data-action="requestFriendship" title="Request friendship">
+                  <i class="fa fa-user-plus"></i>
+                </button>
+              {{/if}} <!-- end checkRelationshipStatus alreadyFriends -->
+            {{/if}} <!-- end checkRelationshipStatus requestReceived -->
+          {{/if}} <!-- end checkRelationshipStatus requestSent -->
+        </li>
+      {{/EasySearch.Each}}
+      
+      {{#EasySearch.IfNoResults index=usersIndex}}
+        <li class="list-group-item">No results found</li>
+      {{/EasySearch.IfNoResults}}
+    </ul>
+  </div> <!-- /.col-md-6 -->
+</template>

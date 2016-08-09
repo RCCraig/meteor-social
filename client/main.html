@@ -1,0 +1,24 @@
+<head>
+  <title>Social Network</title>
+</head>
+
+<body>
+  {{> navbar}}
+</body>
+
+<template name="fullLayout">
+  {{> Template.dynamic template=main}}
+</template>
+
+<template name="mainLayout">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        {{> Template.dynamic template=navigation}}
+      </div> <!-- /.col-md-3 -->
+      <div class="col-md-9">
+        {{> Template.dynamic template=content}}
+      </div> <!-- /.col-md-9 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</template>

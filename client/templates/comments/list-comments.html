@@ -1,0 +1,18 @@
+<template name="listComments">
+  {{#each comments statusId}}
+    <div class="media comment">
+      <div class="media-body">
+        <p>
+          <strong>{{firstName}}</strong> posted on
+          <strong>{{statusDate createdAt}}</strong>
+          {{#if isOwnerOfCommentOrStatus parentData.owner}}
+            <button type="button" class="btn btn-info btn-xs pull-right" data-action="removeComment" title="Remove comment">
+              <i class="fa fa-minus"></i>
+            </button>
+          {{/if}}
+        </p>
+        <p>{{comment}}</p>
+      </div> <!-- /.media-body -->
+    </div> <!-- /.comment -->
+  {{/each}}
+</template>
